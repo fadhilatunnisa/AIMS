@@ -10,7 +10,7 @@ class LoginController extends BaseController {
 			'password' => Input::get('password')
 			);
 
-		if(Auth::attemp($userdata))
+		if(Auth::attempt($userdata))
 		{
 			return "User logged correctly.";
 		}

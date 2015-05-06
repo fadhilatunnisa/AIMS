@@ -18,6 +18,7 @@ class CreateLoginTable extends Migration {
 			$table->string('email');
 			$table->string('name');
 			$table->string('password');
+			$table->rememberToken();
 		});
 	}
 
