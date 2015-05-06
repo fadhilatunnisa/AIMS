@@ -21,5 +21,9 @@ Route::get('leave', function()
 	Auth::logout();
 });
 
-Route::post('check', 'LoginController@postUser');
+Route::post('login', 'LoginController@postUser');
+
+Route::get('coba', function(){
+	return 'coba';
+});
 
