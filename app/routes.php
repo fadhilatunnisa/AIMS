@@ -19,6 +19,7 @@ Route::get('/', function()
 Route::get('leave', function()
 {
 	Auth::logout();
+	return Redirect::to('/');
 });
 
 Route::post('login', 'LoginController@postUser');
