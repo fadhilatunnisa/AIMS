@@ -27,3 +27,5 @@ Route::get('coba', function(){
 	return 'coba';
 });
 
+
+
