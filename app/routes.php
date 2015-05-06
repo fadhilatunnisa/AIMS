@@ -21,15 +21,5 @@ Route::get('leave', function()
 	Auth::logout();
 });
 
-Route::controller('check', 'login');
+Route::post('check', 'LoginController@postUser');
 
-Route::get('register', function()
-{
-	$user = new User;
-	$user->email = "admin@gmail.com";
-	$user->name = "admin";
-	$user->password = hash::make('adminrahasia');
-
-	$user->save();
-	return "pengguna di tambahkan".;
-});
