@@ -24,8 +24,13 @@ Route::get('leave', function()
 
 Route::post('login', 'LoginController@postUser');
 
-Route::get('dashboard/users', function(){
-	return View::make('users.index');
+/**
+ *  Route resource untuk management users
+ */
+Route::resource('users', 'UserController', ['before' => 'auth']);
 
-});
+/**
+ *  Route resource untuk management inventory
+ */
+Route::resource('inventory', 'InventoryController', ['before' => 'auth']);
 
