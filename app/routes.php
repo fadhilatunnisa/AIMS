@@ -24,6 +24,7 @@ Route::get('leave', function()
 
 Route::post('login', 'LoginController@postUser');
 
+Route::get('home', ['uses' => 'HomeController@showWelcome', 'before' => 'auth']);
 /**
  *  Route resource untuk management users
  */
