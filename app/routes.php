@@ -28,5 +28,7 @@ Route::get('coba', function(){
 	return 'coba';
 });
 
+Route::resource('inventories', 'InventoriesController');
+
 
 
