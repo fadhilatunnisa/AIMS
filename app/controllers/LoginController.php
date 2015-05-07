@@ -12,11 +12,11 @@ class LoginController extends BaseController {
 
 		if(Auth::attempt($userdata))
 		{
-			return "User logged correctly.";
+			return Redirect::intended('home');
 		}
 		else
 		{
-			return "Error invalid data.";
+			return Redirect::to('/');
 		}
 	}
 }
