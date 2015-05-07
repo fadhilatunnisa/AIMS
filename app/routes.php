@@ -24,8 +24,9 @@ Route::get('leave', function()
 
 Route::post('login', 'LoginController@postUser');
 
-Route::get('coba', function(){
-	return 'coba';
+Route::get('dashboard/users', function(){
+	return View::make('users.index');
+
 });
 
 Route::resource('inventories', 'InventoriesController');
