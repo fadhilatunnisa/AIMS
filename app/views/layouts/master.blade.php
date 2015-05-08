@@ -29,7 +29,7 @@
   <div class="leftpanel">
     
     <div class="logopanel">
-        <h1><span>[</span>AIMS<span>]</span></h1>
+       <h1><span>[</span>AIMS<span>]</span></h1>
     </div><!-- logopanel -->
     
     @include('layouts.menu')    

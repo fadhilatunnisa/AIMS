@@ -1,6 +1,6 @@
 <?php
 
-class InventoryController extends \BaseController {
+class InventoryController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,13 @@ class InventoryController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$inventories = DB::table('inventories')->paginate(10);
+		$inventories = 
+		[
+			'inventories' => $inventories
+		];
+
+		return View::make('Inventory.index', $inventories);
 	}
 
 
@@ -20,7 +26,7 @@ class InventoryController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('inventory.create');
 	}
 
 
@@ -31,7 +37,28 @@ class InventoryController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = array(
+				'nama' => 'required',
+				'jumlah' => 'required',
+			);
+
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->fails()) {   
+            return Redirect::to('inventory/create')->withErrors($validator)->withInput();
+      } else { 
+      	DB::table('inventories')->insert(
+      array(
+                  'Nama' => Input::get('nama'),
+                  'Jumlah' => Input::get('jumlah'),
+                  'Kondisi' => Input::get('kondisi'),
+                  'Status_Kepemilikan' => Input::get('status_kepemilikan'),
+                  'Keterangan' => Input::get('keterangan')
+            )
+            );
+ 
+      Session::flash('message', 'Data Berhasil Ditambahkan');
+      return Redirect::to('inventory');
+      }
 	}
 
 
@@ -55,7 +82,13 @@ class InventoryController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$inventoriesbyid = DB::table('inventories')->where('id', $id)->first();
+		$inventoriesbyid =
+		[
+			'inventoriesbyid' => $inventoriesbyid
+		];
+
+		return View::make('inventory.edit', $inventoriesbyid);
 	}
 
 
@@ -67,7 +100,29 @@ class InventoryController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = array(
+				'nama' => 'required',
+				'jumlah' => 'required',
+			);
+		 $validator = Validator::make(Input::all(), $rules);
+ 
+      if ($validator->fails()) {   
+            echo "string";
+            return Redirect::to('inventory/edit/'.$id)->withErrors($validator)->withInput();
+      } else {
+      DB::table('inventories')
+      ->where('id', $id)
+      ->update(array(
+                  'Nama' => Input::get('nama'),
+                  'Jumlah' => Input::get('jumlah'),
+                  'Kondisi' => Input::get('kondisi'),
+                  'Status_Kepemilikan' => Input::get('status_kepemilikan'),
+                  'Keterangan' => Input::get('keterangan')
+            ));
+ 
+      Session::flash('message', 'Data Berhasil Diubah');
+      return Redirect::to('inventory');
+      }
 	}
 
 
@@ -79,7 +134,9 @@ class InventoryController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		DB::table('inventories')->where('id', '=', $id)->delete();
+		Session::flash('message', 'Data Berhasil Dihapus');
+		return Redirect::to('inventory');
 	}
 
 

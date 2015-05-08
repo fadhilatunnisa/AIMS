@@ -35,7 +35,14 @@ Route::resource('users', 'UserController', ['before' => 'auth']);
  */
 Route::resource('inventory', 'InventoryController', ['before' => 'auth']);
 
-Route::resource('inventories', 'InventoriesController');
+Route::get('inventory/create', 'InventoryController@create');
 
+Route::post('inventory/create', 'InventoryController@store');
+
+Route::get('inventory/edit/{id}', 'InventoryController@edit');
+
+Route::post('inventory/update/{id}', array('as' => 'inventory.update', 'uses' =>'InventoryController@update'));
+
+Route::get('inventory/destroy/{id}', 'InventoryController@destroy');
 
 
