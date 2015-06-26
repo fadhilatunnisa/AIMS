@@ -52,6 +52,7 @@ class InventoryController extends BaseController {
                   'Jumlah' => Input::get('jumlah'),
                   'Kondisi' => Input::get('kondisi'),
                   'Status_Kepemilikan' => Input::get('status_kepemilikan'),
+                  'Image' => Input::get('image'),
                   'Keterangan' => Input::get('keterangan')
             )
             );

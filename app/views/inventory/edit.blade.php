@@ -28,9 +28,14 @@
   		{{ '<div>'.$errors->first('status_kepemilikan').'</div>' }}
   	</div>
   	<div class="form-group">
+  		{{ Form::label('image', 'Image') }}
+  		{{ Form::file('image', null, array('class' => 'form-control')) }}
+  		{{ '<div>'.$errors->first('image').'</div>' }}
+  	</div>
+  	<div class="form-group">
   		{{ Form::label('keterangan', 'Keterangan') }}
   		{{ Form::textarea('keterangan',null, array('class' => 'form-control')) }}
-  		{{ '<div>'.$errors->first('status_kepemilikan').'</div>' }}
+  		{{ '<div>'.$errors->first('keterangan').'</div>' }}
   	</div>
   	{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
 

@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends \BaseController {
+class UserController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,13 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('users.index');
+		$users = DB::table('users')->paginate(10);
+		$users =
+		[
+			'users' => $users
+		];
+
+		return View::make('users.index', $users);
 	}
 
 
@@ -20,7 +26,7 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('users.create');
 	}
 
 
@@ -31,7 +37,28 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = array(
+            'email' => 'required',
+            'password' => 'required',
+            'nama' => 'required'
+      );
+ 
+      $validator = Validator::make(Input::all(), $rules);
+ 
+      if ($validator->fails()) {   
+            return Redirect::to('users/create')->withErrors($validator)->withInput();
+      } else {               
+      DB::table('users')->insert(
+      array(
+                  'email' => Input::get('email'),
+                  'password' => Input::get('password'),
+                  'nama' => Input::get('nama')
+            )
+            );
+ 
+      Session::flash('message', 'Data Berhasil Ditambahkan');
+      return Redirect::to('users');
+      }
 	}
 
 

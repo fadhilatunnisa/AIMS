@@ -28,8 +28,6 @@ Route::get('home', ['uses' => 'HomeController@showWelcome', 'before' => 'auth'])
 /**
  *  Route resource untuk management users
  */
-Route::resource('users', 'UserController', ['before' => 'auth']);
-
 /**
  *  Route resource untuk management inventory
  */
@@ -44,5 +42,11 @@ Route::get('inventory/edit/{id}', 'InventoryController@edit');
 Route::post('inventory/update/{id}', array('as' => 'inventory.update', 'uses' =>'InventoryController@update'));
 
 Route::get('inventory/destroy/{id}', 'InventoryController@destroy');
+
+Route::resource('users', 'UserController', ['before' => 'auth']);
+
+Route::get('users/create','UserController@create');
+
+Route::post('users/create','UserController@store');
 
 

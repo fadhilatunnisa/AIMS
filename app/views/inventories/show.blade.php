@@ -1,1 +1,0 @@
-C:\xampp\htdocs\laravel\app/views/inventories/show.blade.php
